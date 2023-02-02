@@ -1,0 +1,109 @@
+---
+title: "Capstone_Code"
+output: pdf_document
+date: '2022-11-14'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+library(fmsb)
+GK_data <- data.frame(row.names = c("Alisson", "Ederson", "Edouard Mendy"), Clean.Sheets = c(20, 20, 14), Clean.SheetPct = c(55.6, 54.1, 41.2), SavePct = c(75.8, 69.9, 75.5))
+GK_Ranges <- data.frame(Clean.Sheets = c(50, 0), Clean.SheetPct = c(100, 0), SavePct = c(100, 0))
+GKdf <- rbind(GK_Ranges, GK_data)
+radarchart(GKdf, plwd = 2, plty = 1, pcol = c("red", "green", "blue"), title = c("Goalkeepers"))
+legend(x = "bottom", legend = c("Alisson", "Ederson", "Edouard Mendy"), horiz = TRUE, bty = "n", pch = 20, col = c("red", "green", "blue"), text.col = "black", cex = 1, pt.cex = 1)
+GK_descriptions <- data.frame("Category" = colnames(GK_data), "Description" = c("Clean Sheets", "Clean Sheet %", "Save %"))
+
+
+LB_data <- data.frame(row.names = c("Marc Cucurella", "Tyrick Mitchell", "Joao Cancelo"), PW.Tkls = c(62, 57, 54), PW.TklPct = c(62.0, 68.7, 50.5), Int = c(30, 41, 59), Cmp.Pct = c(80.2, 72.2, 83.5), Ast = c(1, 2, 7))
+LB_Ranges <- data.frame(PW.Tkls = c(75, 0), PW.TklPct = c(75, 0), Int = c(75, 0), Cmp.Pct = c(100, 0), Ast = c(10, 0))
+LBdf <- rbind(LB_Ranges, LB_data)
+radarchart(LBdf, plwd = 2, plty = 1, pcol = c("red", "green", "blue"), title = c("Left Backs"))
+legend(x = "bottom", legend = c("Marc Cucurella", "Tyrick Mitchell", "Joao Cancelo"), horiz = TRUE, bty = "n", pch = 20, col = c("red", "green", "blue"), text.col = "black", cex = 1, pt.cex = 1)
+LB_descriptions <- data.frame("Category" = colnames(LB_data), "Description" = c("Possesion Winning Tackles", "Possession Winning Tackle %", "Interceptions", "Pass Completion %", "Assists"))
+
+
+CB_data <- data.frame(row.names = c("James Tarkowski", "Mohammed Salisu", "Cristian Romero", "Antonio Rudiger"), PW.Tkls = c(45, 47, 39, 28), PW.TklPct = c(70.2, 61.5, 64.7, 75.0), Int = c(45, 78, 33, 28), Blk = c(75, 49, 46, 20), Clr = c(186, 158, 74, 91))
+CB_Ranges <- data.frame(PW.Tkls = c(50, 0), PW.TklsPct = c(100, 0), Int = c(100, 0), Blk = c(100, 0), Clr = c(200, 50))
+CBdf <- rbind(CB_Ranges, CB_data)
+radarchart(CBdf, plwd = 2, plty = 1, pcol = c("red", "green", "blue", "pink"), title = c("Center Backs"))
+legend(x = "bottom", legend = c("James Tarkowski", "Mohammed Salisu", "Cristian Romero", "Antonio Rudiger"), horiz = TRUE, bty = "n", pch = 20, col = c("red", "green", "blue", "pink"), text.col = "black", cex = 1, pt.cex = 1)
+CB_descriptions <- data.frame("Category" = colnames(CB_data), "Description" = c("Possesion Winning Tackles", "Possession Winning Tackle %", "Interceptions", "Blocked Shots", "Clearances"))
+ 
+ 
+RB_data <- data.frame(row.names = c("Matty Cash", "Kyle Walker-Peters", "Trent Alexander-Arnold"), PW.Tkls = c(50, 33, 23), PW.TklPct = c(60.3, 68.4, 45.0), Int = c(49, 37, 43), Cmp.Pct = c(68.4, 78.3, 74.0), Ast = c(3, 2, 12))
+RB_Ranges <- data.frame(PW.Tkls = c(75, 0), PW.TklPct = c(75, 0), Int = c(75, 0), Cmp.Pct = c(100, 0), Ast = c(15, 0))
+Rbdf <- rbind(RB_Ranges, RB_data)
+radarchart(Rbdf, plwd = 2, plty = 1, pcol = c("red", "green", "blue"), title = c("Right Backs"))
+legend(x = "bottom", legend = c("Matty Cash", "Kyle Walker-Peters", "Trent Alexander-Arnold"), horiz = TRUE, bty = "n", pch = 20, col = c("red", "green", "blue"), text.col = "black", cex = 1, pt.cex = 1)
+RB_descriptions <- data.frame("Category" = colnames(RB_data), "Description" = c("Possesion Winning Tackles", "Possession Winning Tackle %", "Interceptions", "Pass Completion %", "Assists"))
+
+
+CM_data <- data.frame(row.names = c("Rodri", "Declan Rice", "Thiago Alcantara", "Paul Pogba"), Suc.DrbPct = c(54.5, 69.4, 62.5, 72.2), Cmp.Pct = c(91.4, 90.4, 88.9, 82.4), CmpPct.Over30 = c(82.1, 78.7, 78.9, 79.5), Ast = c(2, 4, 4, 9), PW.TklPct = c(54.2, 53.5, 23.8, 21.4))
+Cm_Ranges <- data.frame(Suc.DrbPct = c(75, 50), Cmp.Pct = c(100, 75), CmpPct.Over30 = c(100, 75), Ast = c(10, 0), PW.TklPct = c(60, 15))
+Cmdf <- rbind(Cm_Ranges, CM_data)
+radarchart(Cmdf, plwd = 2, plty = 1, pcol = c("red", "green", "blue", "pink"), title = c("Center Midfielders"))
+legend(x = "bottom", legend = c("Rodri", "Declan Rice", "Thiago Alcantara", "Paul Pogba"), horiz = TRUE, bty = "n", pch = 20, col = c("red", "green", "blue", "pink"), text.col = "black", cex = 1, pt.cex = 1)
+CM_descriptions <- data.frame("Category" = colnames(CM_data), "Description" = c("Successful Dribble %", "Pass Completion %", "Pass Completion % (passes over 30 yards)", "Assists", "Possesion Winning Tackle %"))
+
+
+CAM_data <- data.frame(row.names = c("Kevin De Bruyne", "Mason Mount", "James Maddison"), SCA90 = c(6.26, 4.57, 3.84), GCA90 = c(0.57, 0.72, 0.66), Ast = c(8, 10, 8), Goals = c(15, 11, 12), Cmp.In18 = c(65, 61, 38))
+CAM_Ranges <- data.frame(SCA90 = c(7, 2), GCA90 = c(1, 0.25), Ast = c(10, 2), Goals = c(20, 5), Cmp.In18 = c(75, 25))
+CAMdf <- rbind(CAM_Ranges, CAM_data)
+radarchart(CAMdf, plwd = 2, plty = 1, pcol = c("red", "green", "blue"), title = c("Center Attacking Midfielders"))
+legend(x = "bottom", legend = c("Kevin De Bruyne", "Mason Mount", "James Maddison"), horiz = TRUE, bty = "n", pch = 20, col = c("red", "green", "blue"), text.col = "black", cex = 1, pt.cex = 1)
+CAM_descriptions <- data.frame("Category" = colnames(CAM_data), "Description" = c("Shot Creating Actions Per 90 Minutes", "Goal Creating Actions Per 90 Minutes", "Assists", "Goals", "Completed Passes in 18 Yard Box"))
+
+
+St_data <- data.frame(row.names = c("Cristiano Ronaldo", "Jamie Vardy", "Harry Kane"), Goals = c(18, 15, 17), Gper90 = c(0.66, 0.75, 0.47), SOT = c(39, 29, 49), Gper.SOT = c(0.38, 0.60, 0.27), Tot.Att = c(168, 102, 168))
+ST_Ranges <- data.frame(Goals = c(20, 5), Gper90 = c(1, 0.25), SOT = c(75, 10), Gper.SOT = c(0.75, 0), Tot.Att = c(200, 50))
+STdf <- rbind(ST_Ranges, ST_data)
+radarchart(STdf, plwd = 2, plty = 1, pcol = c("red", "green", "blue"), title = c("Strikers"))
+legend(x = "bottom", legend = c("Cristiano Ronaldo", "Jamie Vardy", "Harry Kane"), horiz = TRUE, bty = "n", pch = 20, col = c("red", "green", "blue"), text.col = "black", cex = 1, pt.cex = 1)
+ST_descriptions <- data.frame("Category" = colnames(ST_data), "Description" = c("Goals", "Goals Per 90 Minutes", "Shots on Target", "Goals Per Shot on Target", "Touches in Attacking Penalty Area"))
+
+
+LW_data <- data.frame(row.names = c("Hueng-Min Son", "Sadio Mane", "Phil Foden"), Suc.DrbPct = c(55.4, 61.0, 63.8), PPR = c(223, 257, 165), GCA90 = c(0.39, 0.45, 0.55), Goals = c(23, 16, 9), Assists = c(7, 2, 5))
+LW_Ranges <- data.frame(Suc.DrbPct = c(75, 25), PPR = c(300, 75), GCA90 = c(0.75, 0), Goals = c(30, 5), Assists = c(10, 0))
+LWdf <- rbind(LW_Ranges, LW_data)
+radarchart(LWdf, plwd = 2, plty = 1, pcol = c("red", "green", "blue"), title = c("Left Wingers"))
+legend(x = "bottom", legend = c("Hueng-Min Son", "Sadio Mane", "Phil Foden"), horiz = TRUE, bty = "n", pch = 20, col = c("red", "green", "blue"), text.col = "black", cex = 1, pt.cex = 1)
+LW_descriptions <- data.frame("Category" = colnames(LW_data), "Description" = c("Successful Dribble %", "Progressive Passes Recieved (forward passes of 10+ yards in opponent half)", "Goal Creating Actions Per 90 Minutes", "Goals", "Assists"))
+
+
+RW_data <- data.frame(row.names = c("Mohammed Salah", "Jarrod Bowen", "Riyad Mahrez"), Suc.DrbPct = c(42.7, 56.8, 52.0), PPR = c(314, 141, 138), GCA90 = c(0.81, 0.57, 0.60), Goals = c(23, 12, 11), Assists = c(13, 10, 5)))
+RW_Ranges <- data.frame(Suc.DrbPct = c(75, 25), PPR = c(350, 75), GCA90 = c(1, 0.25), Goals = c(30, 5), Assists = c(15, 2))
+RWdf <- rbind(RW_Ranges, RW_data)
+radarchart(RWdf, plwd = 2, plty = 1, pcol = c("red", "green", "blue"), title = c("Right Wingers"))
+legend(x = "bottom", legend = c("Mohammed Salah", "Jarrod Bowen", "Riyad Mahrez"), horiz = TRUE, bty = "n", pch = 20, col = c("red", "green", "blue"), text.col = "black", cex = 1, pt.cex = 1)
+RW_descriptions <- data.frame("Category" = colnames(RW_data), "Description" = c("Successful Dribble %", "Progressive Passes Recieved (forward passes of 10+ yards in opponent half)", "Goal Creating Actions Per 90 Minutes", "Goals", "Assists"))
+
+
+devtools::install_github("FCrSTATS/SBpitch")
+create_Pitch(grass_colour = "#538032", 
+line_colour =  "#ffffff", 
+background_colour = "#538032", 
+goal_colour = "#000000")
